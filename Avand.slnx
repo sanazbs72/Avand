@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Avand.Application.Api/Avand.Application.Api.csproj" />
+    <Project Path="src/Avand.Ledger.Api/Avand.Ledger.Api.csproj" />
+  </Folder>
+</Solution>
