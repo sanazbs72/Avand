@@ -1,6 +1,3 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Avand.Ledger.Api;
 
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
+await LedgerHost.Build(args).RunAsync();

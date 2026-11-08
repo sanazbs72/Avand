@@ -1,0 +1,20 @@
+# Data Model — V01
+
+Logical model. Each service owns its migrations, keys, and access roles.
+
+| Owner / record | Key data and invariants |
+| --- | --- |
+| Application / TopUp | TopUpId, authenticated CustomerId, exact positive AmountIrr, merchant scope, provider payment/session reference, provider state, posting state and result reference. Customer-scoped initiation key binds to canonical amount; replay returns original admission. Provider payment references are unique within merchant scope. |
+| Application / GatewayEvidence | Immutable evidence reference and digest, TopUpId, provider scope, payment ID, capture ref when present, exact amount, definitive outcome, observation time. A confirmed capture is unique by provider/merchant/capture reference and bound to one matching top-up. Deduplicate equivalent facts. Retain conflict evidence without replacing a known capture or creating a new posting. |
+| Application / RecoveryWork | Stable session request reference, C04 command ID, or F02 OperationId and immutable payload as appropriate. Store due time and bounded attempt/lease metadata. Admission and work commit locally together. Persist capture and F02 intent atomically. Claim due work in a short transaction and perform remote calls after commit. Expired leases allow restart recovery; stale workers cannot overwrite newer results. |
+| Ledger / Eligibility and initiation authorization | Effective eligibility and version per customer; C04 durable result keyed by authenticated producer and command identity. Bind applied authorization to payment intent/customer. A conflicting request under the same identity is rejected. C01/C02 setup uses privileged fixture controls in this slice. |
+| Ledger / Payment action and operation outcome | Protect producer + OperationId, business action, and provider/merchant/capture identity. Store canonical fingerprint, customer, amount, immutable decision, posted journal, credited bucket and decision time. Exact replay returns the stored result. A different ID cannot bypass capture uniqueness. |
+| Ledger / Account, journal and projection | Journal lines are append-only. Debit GatewayReceivable and credit CustomerRialAvailable or CustomerRialRestricted by equal positive IRR. Ledger selects the bucket under the effective eligibility lock on the first posting. Enforce balanced journals and scoped posting privileges in storage; commit journal, account projections, action claims and outcome together. Projection equals durable entries. GatewayReceivable is separate from BankCash. |
+
+## Lifecycle and coordination
+
+- Admission persists intent before C04. Create a gateway session only after durable C04 Applied. Recover a lost C04 response by lookup or same-command replay. A session retry uses the same gateway request reference; the mock must return the same session and creation time.
+- Provider axis progresses from awaiting evidence to matched definitive failure or confirmed capture. Timeout, missing or mismatched evidence remains unresolved; retain correlation and continue inquiry. Issuer return confirmation for unverified payment updates its message/evidence only.
+- Posting axis starts after a verified capture with `VerifiedPendingLedger`. Before first commit, a retry may execute the original immutable F02. After commit, readback or identical replay yields the original result. A technical failure or NotFound stays unresolved. Persist a definitive Ledger rejection as a financial exception for review, distinct from failed provider verification, without a refund or replacement operation.
+- Apply the authoritative result locally and monotonically. Pending status may coexist briefly with a committed balance. Only a confirmed Posted result produces a successful result with its credited bucket. Restricted credit increases the restricted balance only. Replay after restriction does not reclassify a previous posting.
+- Rollback removes all partial effects. A balance read uses Ledger's committed projection. Audit correlation uses customer intent, provider payment/action references, OperationId and JournalId; never log credentials, card data or raw sensitive evidence.

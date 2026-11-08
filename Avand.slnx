@@ -3,4 +3,7 @@
     <Project Path="src/Avand.Application.Api/Avand.Application.Api.csproj" />
     <Project Path="src/Avand.Ledger.Api/Avand.Ledger.Api.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Avand.V01.IntegrationTests/Avand.V01.IntegrationTests.csproj" />
+  </Folder>
 </Solution>

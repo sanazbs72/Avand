@@ -1,6 +1,3 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Avand.Application.Api;
 
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
+await ApplicationHost.Build(args).RunAsync();

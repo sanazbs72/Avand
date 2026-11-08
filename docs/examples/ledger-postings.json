@@ -1,0 +1,1206 @@
+{
+  "schemaVersion": 1,
+  "status": "Design fixtures, not application tests",
+  "accountTemplates": [
+    {
+      "code": "IRR-1100",
+      "name": "BankCash",
+      "asset": "IRR",
+      "category": "Asset",
+      "normalSide": "Debit",
+      "ownerType": "BankAccount",
+      "balanceRule": "NonNegative",
+      "meaning": "Confirmed cash; the only V1 cash source for immediate liquidity."
+    },
+    {
+      "code": "IRR-1110",
+      "name": "GatewayReceivable",
+      "asset": "IRR",
+      "category": "Asset",
+      "normalSide": "Debit",
+      "ownerType": "GatewayMerchant",
+      "balanceRule": "NonNegative",
+      "meaning": "Verified captured money not yet settled to the bank; not usable cash."
+    },
+    {
+      "code": "IRR-1120",
+      "name": "CustodianCashReceivable",
+      "asset": "IRR",
+      "category": "Asset",
+      "normalSide": "Debit",
+      "ownerType": "Custodian",
+      "balanceRule": "NonNegative",
+      "meaning": "Confirmed custody-sale proceeds still owed; not usable cash."
+    },
+    {
+      "code": "IRR-1130",
+      "name": "CustodianAdvance",
+      "asset": "IRR",
+      "category": "Asset",
+      "normalSide": "Debit",
+      "ownerType": "Custodian",
+      "balanceRule": "NonNegative",
+      "meaning": "Confirmed cash paid for gold not yet received; not usable cash."
+    },
+    {
+      "code": "IRR-1190",
+      "name": "SuspenseDebit",
+      "asset": "IRR",
+      "category": "SuspenseAsset",
+      "normalSide": "Debit",
+      "ownerType": "Case",
+      "balanceRule": "NonNegative",
+      "meaning": "Proven unresolved debit/loss; not cash and not an asserted collectible customer debt."
+    },
+    {
+      "code": "IRR-2100",
+      "name": "CustomerRialAvailable",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Customer claim available for new permitted operations."
+    },
+    {
+      "code": "IRR-2110",
+      "name": "CustomerRialReserved",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Claim reserved by a specific customer hold; not freely spendable."
+    },
+    {
+      "code": "IRR-2120",
+      "name": "CustomerRialRestricted",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Real funds held under a customer restriction."
+    },
+    {
+      "code": "IRR-2130",
+      "name": "WithdrawalPayable",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Accepted payout claim; corresponding physical cash reservation remains until a definitive result."
+    },
+    {
+      "code": "IRR-2140",
+      "name": "RefundPayable",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Reserved obligation to return a captured payment."
+    },
+    {
+      "code": "IRR-2150",
+      "name": "CustodianPurchasePayable",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Custodian",
+      "balanceRule": "NonNegative",
+      "meaning": "Gold received on an accepted purchase but cash not yet paid."
+    },
+    {
+      "code": "IRR-2160",
+      "name": "GatewayRefundPayable",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "GatewayMerchant",
+      "balanceRule": "NonNegative",
+      "meaning": "Provider has refunded the payer but platform cash debit is pending."
+    },
+    {
+      "code": "IRR-2170",
+      "name": "OperationsPayable",
+      "asset": "IRR",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Counterparty",
+      "balanceRule": "NonNegative",
+      "meaning": "Other evidenced near-term cash obligations."
+    },
+    {
+      "code": "IRR-2190",
+      "name": "SuspenseCredit",
+      "asset": "IRR",
+      "category": "SuspenseLiability",
+      "normalSide": "Credit",
+      "ownerType": "Case",
+      "balanceRule": "NonNegative",
+      "meaning": "Unidentified cash receipt; offsets cash and does not create treasury headroom."
+    },
+    {
+      "code": "IRR-3100",
+      "name": "PlatformCapital",
+      "asset": "IRR",
+      "category": "Equity",
+      "normalSide": "Credit",
+      "ownerType": "Platform",
+      "balanceRule": "NonNegative",
+      "meaning": "Confirmed owner funding; not a customer top-up."
+    },
+    {
+      "code": "IRR-3200",
+      "name": "TradingRialClearing",
+      "asset": "IRR",
+      "category": "ConversionControl",
+      "normalSide": "Credit",
+      "ownerType": "Platform",
+      "balanceRule": "Signed",
+      "meaning": "Internal IRR conversion position; neither cash nor a standalone profit measure."
+    },
+    {
+      "code": "IRR-4100",
+      "name": "FeeRevenue",
+      "asset": "IRR",
+      "category": "Income",
+      "normalSide": "Credit",
+      "ownerType": "Platform",
+      "balanceRule": "NonNegative",
+      "meaning": "Posted customer fees; reversal cannot exceed related original fees."
+    },
+    {
+      "code": "IRR-5100",
+      "name": "ProviderFeeExpense",
+      "asset": "IRR",
+      "category": "Expense",
+      "normalSide": "Debit",
+      "ownerType": "Platform",
+      "balanceRule": "NonNegative",
+      "meaning": "Evidenced gateway/bank/custodian costs paid by the platform."
+    },
+    {
+      "code": "IRR-5200",
+      "name": "CorrectionLossExpense",
+      "asset": "IRR",
+      "category": "Expense",
+      "normalSide": "Debit",
+      "ownerType": "Platform",
+      "balanceRule": "NonNegative",
+      "meaning": "Approved write-off of a proven suspense debit."
+    },
+    {
+      "code": "GOLD-1100",
+      "name": "CustodianGold",
+      "asset": "GOLD_MG",
+      "category": "Asset",
+      "normalSide": "Debit",
+      "ownerType": "Custodian",
+      "balanceRule": "NonNegative",
+      "meaning": "Confirmed eligible pooled gold of the contracted grade."
+    },
+    {
+      "code": "GOLD-1110",
+      "name": "CustodianGoldUnidentified",
+      "asset": "GOLD_MG",
+      "category": "Asset",
+      "normalSide": "Debit",
+      "ownerType": "Custodian",
+      "balanceRule": "NonNegative",
+      "meaning": "Physical receipt whose ownership is unresolved; excluded from backing."
+    },
+    {
+      "code": "GOLD-1190",
+      "name": "GoldSuspenseDebit",
+      "asset": "GOLD_MG",
+      "category": "SuspenseAsset",
+      "normalSide": "Debit",
+      "ownerType": "Case",
+      "balanceRule": "NonNegative",
+      "meaning": "Unresolved physical shortage/claim; excluded from backing."
+    },
+    {
+      "code": "GOLD-2100",
+      "name": "CustomerGoldAvailable",
+      "asset": "GOLD_MG",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Customer gold claim available for a permitted sale or reservation."
+    },
+    {
+      "code": "GOLD-2110",
+      "name": "CustomerGoldReserved",
+      "asset": "GOLD_MG",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Customer gold claim in a specific hold."
+    },
+    {
+      "code": "GOLD-2120",
+      "name": "CustomerGoldRestricted",
+      "asset": "GOLD_MG",
+      "category": "Liability",
+      "normalSide": "Credit",
+      "ownerType": "Customer",
+      "balanceRule": "NonNegative",
+      "meaning": "Customer gold claim restricted from new use."
+    },
+    {
+      "code": "GOLD-2190",
+      "name": "GoldSuspenseCredit",
+      "asset": "GOLD_MG",
+      "category": "SuspenseLiability",
+      "normalSide": "Credit",
+      "ownerType": "Case",
+      "balanceRule": "NonNegative",
+      "meaning": "Unidentified ownership obligation; not free platform stock."
+    },
+    {
+      "code": "GOLD-3200",
+      "name": "PlatformGoldPosition",
+      "asset": "GOLD_MG",
+      "category": "ConversionControl",
+      "normalSide": "Credit",
+      "ownerType": "Platform",
+      "balanceRule": "Signed",
+      "meaning": "Internal gold residual/conversion position; can be negative within permitted backing exposure."
+    }
+  ],
+  "books": [
+    {
+      "id": "baseline",
+      "title": "Funded custody, top-up, buy, sell, payout, refund and treasury",
+      "initialBalances": [],
+      "scenarios": [
+        {
+          "id": "B01",
+          "operation": "ConfirmCapitalInflow",
+          "title": "Confirmed platform funding",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Debit",
+              "amount": "200000000"
+            },
+            {
+              "account": "IRR-3100",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "200000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B02",
+          "operation": "RecordCustodianCashPayment",
+          "title": "Confirmed procurement prepayment",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1130",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "100000000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "100000000"
+            }
+          ],
+          "note": "A matching authorized platform cash reservation exists before dispatch."
+        },
+        {
+          "id": "B03",
+          "operation": "RecordCustodianGoldReceipt",
+          "title": "Confirmed receipt of 10,000 mg",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-3200",
+              "owner": "Platform",
+              "side": "Debit",
+              "amount": "100000000"
+            },
+            {
+              "account": "IRR-1130",
+              "owner": "CustodianA",
+              "side": "Credit",
+              "amount": "100000000"
+            },
+            {
+              "account": "GOLD-1100",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "10000"
+            },
+            {
+              "account": "GOLD-3200",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "10000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B04",
+          "operation": "ApplyGatewayPaymentEvidence",
+          "title": "Verified 20,000,000 IRR top-up",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1110",
+              "owner": "GatewayA",
+              "side": "Debit",
+              "amount": "20000000"
+            },
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "20000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B05",
+          "operation": "RecordGatewaySettlement",
+          "title": "Gateway cash received without fee",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Debit",
+              "amount": "20000000"
+            },
+            {
+              "account": "IRR-1110",
+              "owner": "GatewayA",
+              "side": "Credit",
+              "amount": "20000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B06",
+          "operation": "BuyGold",
+          "title": "Buy 1,000 mg for 10,000,000 IRR plus 100,000 fee",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "10100000"
+            },
+            {
+              "account": "IRR-3200",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "10000000"
+            },
+            {
+              "account": "IRR-4100",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "100000"
+            },
+            {
+              "account": "GOLD-3200",
+              "owner": "Platform",
+              "side": "Debit",
+              "amount": "1000"
+            },
+            {
+              "account": "GOLD-2100",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "1000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B07",
+          "operation": "SellGold",
+          "title": "Sell 500 mg for gross 4,900,000 IRR and 24,500 fee",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-3200",
+              "owner": "Platform",
+              "side": "Debit",
+              "amount": "4900000"
+            },
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "4875500"
+            },
+            {
+              "account": "IRR-4100",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "24500"
+            },
+            {
+              "account": "GOLD-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "500"
+            },
+            {
+              "account": "GOLD-3200",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "500"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B08",
+          "operation": "ReserveWithdrawal",
+          "title": "Reserve a 5,000,000 IRR payout",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "5000000"
+            },
+            {
+              "account": "IRR-2130",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "5000000"
+            }
+          ],
+          "note": "Also creates a physical cash reservation, already represented by WithdrawalPayable."
+        },
+        {
+          "id": "B09",
+          "operation": "SettleWithdrawal",
+          "title": "Bank proves 2,000,000 IRR partial payment",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2130",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "2000000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "2000000"
+            }
+          ],
+          "note": "The other 3,000,000 IRR remains reserved."
+        },
+        {
+          "id": "B10",
+          "operation": "SettleWithdrawal",
+          "title": "Bank proves the remaining 3,000,000 IRR",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2130",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "3000000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "3000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B11",
+          "operation": "ReserveRefund",
+          "title": "Reserve 1,000,000 IRR from the captured payment",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-2140",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B12",
+          "operation": "SettleRefund",
+          "title": "Confirmed refund funded by bank debit",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2140",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B13",
+          "operation": "RecordCustodianGoldSale",
+          "title": "Operations sells 1,000 mg; cash not received",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1120",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "9900000"
+            },
+            {
+              "account": "IRR-3200",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "9900000"
+            },
+            {
+              "account": "GOLD-3200",
+              "owner": "Platform",
+              "side": "Debit",
+              "amount": "1000"
+            },
+            {
+              "account": "GOLD-1100",
+              "owner": "CustodianA",
+              "side": "Credit",
+              "amount": "1000"
+            }
+          ],
+          "note": "An approved free-gold outflow hold exists. No usable bank cash is created yet."
+        },
+        {
+          "id": "B14",
+          "operation": "RecordCustodianCashReceipt",
+          "title": "Confirmed treasury proceeds",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Debit",
+              "amount": "9900000"
+            },
+            {
+              "account": "IRR-1120",
+              "owner": "CustodianA",
+              "side": "Credit",
+              "amount": "9900000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B15",
+          "operation": "RecordProviderFee",
+          "title": "Confirmed 10,000 IRR bank cost",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-5100",
+              "owner": "Platform",
+              "side": "Debit",
+              "amount": "10000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "10000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B16",
+          "operation": "RecordUnmatchedExternalMovement",
+          "title": "Unidentified real cash receipt",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Debit",
+              "amount": "250000"
+            },
+            {
+              "account": "IRR-2190",
+              "owner": "CaseA",
+              "side": "Credit",
+              "amount": "250000"
+            }
+          ],
+          "note": "Cash increases but equal suspense liability prevents free treasury headroom."
+        },
+        {
+          "id": "B17",
+          "operation": "ResolveSuspense",
+          "title": "Receipt proven to be owner funding",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2190",
+              "owner": "CaseA",
+              "side": "Debit",
+              "amount": "250000"
+            },
+            {
+              "account": "IRR-3100",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "250000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "B18",
+          "operation": "HistoricalMistake",
+          "title": "Existing mistaken customer credit, retained for correction",
+          "recordKind": "HistoricalMistake",
+          "entries": [
+            {
+              "account": "IRR-1190",
+              "owner": "CaseB",
+              "side": "Debit",
+              "amount": "5000"
+            },
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "5000"
+            }
+          ],
+          "note": "This is deliberately wrong historical accounting, not a supported normal customer command."
+        },
+        {
+          "id": "B19",
+          "operation": "PostCorrection",
+          "title": "Approved full reversal of the mistaken credit",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "5000"
+            },
+            {
+              "account": "IRR-1190",
+              "owner": "CaseB",
+              "side": "Credit",
+              "amount": "5000"
+            }
+          ],
+          "note": "Links to B18; the original entries stay immutable."
+        }
+      ],
+      "expectedFinalBalances": {
+        "IRR-1100|BankMain": "124140000",
+        "IRR-2100|CustomerA": "8775500",
+        "IRR-2130|CustomerA": "0",
+        "IRR-2140|CustomerA": "0",
+        "IRR-4100|Platform": "124500",
+        "IRR-5100|Platform": "10000",
+        "GOLD-1100|CustodianA": "9000",
+        "GOLD-2100|CustomerA": "500",
+        "GOLD-3200|Platform": "8500"
+      }
+    },
+    {
+      "id": "capture-and-return-before-wallet",
+      "title": "Captured money fully returned before wallet delivery",
+      "initialBalances": [],
+      "scenarios": [
+        {
+          "id": "R01",
+          "operation": "ApplyGatewayPaymentEvidence",
+          "title": "Record capture and already-confirmed gateway return atomically",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1110",
+              "owner": "GatewayA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-2140",
+              "owner": "CustomerB",
+              "side": "Credit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-2140",
+              "owner": "CustomerB",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-1110",
+              "owner": "GatewayA",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": "Both provider action references are claimed; no spendable customer credit appears."
+        }
+      ],
+      "expectedFinalBalances": {
+        "IRR-1110|GatewayA": "0",
+        "IRR-2140|CustomerB": "0",
+        "IRR-2100|CustomerB": "0"
+      }
+    },
+    {
+      "id": "failed-payment-no-capture",
+      "title": "Issuing bank returns an unverified card payment",
+      "initialBalances": [],
+      "scenarios": [
+        {
+          "id": "N01",
+          "operation": "ProviderFailureEvidenceOnly",
+          "title": "No Ledger journal for money Avand never captured",
+          "recordKind": "ProductOnly",
+          "entries": [],
+          "note": "Keep definitive verify rejection and gateway inquiry evidence in Application. The issuing bank returns the unverified payment. No Avand wallet credit, cash debit or refund dispatch."
+        }
+      ],
+      "expectedFinalBalances": {}
+    },
+    {
+      "id": "late-restricted-capture",
+      "title": "Verified capture evidence delivered after restriction",
+      "initialBalances": [],
+      "scenarios": [
+        {
+          "id": "L01",
+          "operation": "ApplyGatewayPaymentEvidence",
+          "title": "Credit the real claim to Restricted",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-1110",
+              "owner": "GatewayA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-2120",
+              "owner": "CustomerB",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": "Eligibility blocks new instructions, not earlier real payment evidence."
+        }
+      ],
+      "expectedFinalBalances": {
+        "IRR-2120|CustomerB": "1000000",
+        "IRR-2100|CustomerB": "0",
+        "IRR-1100|BankMain": "0"
+      }
+    },
+    {
+      "id": "involuntary-reversal-after-spending",
+      "title": "Record a proven reversal without negative customer balances",
+      "initialBalances": [
+        {
+          "account": "IRR-1100",
+          "owner": "BankMain",
+          "balance": "5000000"
+        },
+        {
+          "account": "IRR-1110",
+          "owner": "GatewayA",
+          "balance": "2000000"
+        },
+        {
+          "account": "IRR-3100",
+          "owner": "Platform",
+          "balance": "5000000"
+        },
+        {
+          "account": "IRR-2100",
+          "owner": "CustomerA",
+          "balance": "200000"
+        },
+        {
+          "account": "IRR-3200",
+          "owner": "Platform",
+          "balance": "1800000"
+        },
+        {
+          "account": "GOLD-1100",
+          "owner": "CustodianA",
+          "balance": "1000"
+        },
+        {
+          "account": "GOLD-3200",
+          "owner": "Platform",
+          "balance": "820"
+        },
+        {
+          "account": "GOLD-2100",
+          "owner": "CustomerA",
+          "balance": "180"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "V01",
+          "operation": "ApplyGatewayPaymentEvidence",
+          "title": "Provider reverses the prior 2,000,000 IRR capture",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "200000"
+            },
+            {
+              "account": "IRR-1190",
+              "owner": "ReversalCase",
+              "side": "Debit",
+              "amount": "1800000"
+            },
+            {
+              "account": "IRR-1110",
+              "owner": "GatewayA",
+              "side": "Credit",
+              "amount": "2000000"
+            }
+          ],
+          "note": "Create finance case and risk freeze; do not silently seize reserved assets or claim the suspense is usable money."
+        }
+      ],
+      "expectedFinalBalances": {
+        "IRR-2100|CustomerA": "0",
+        "IRR-1190|ReversalCase": "1800000",
+        "IRR-1110|GatewayA": "0",
+        "GOLD-2100|CustomerA": "180"
+      }
+    },
+    {
+      "id": "gateway-paid-refund-before-merchant-debit",
+      "title": "Provider refund and later merchant debit are distinct facts",
+      "initialBalances": [
+        {
+          "account": "IRR-1100",
+          "owner": "BankMain",
+          "balance": "5000000"
+        },
+        {
+          "account": "IRR-3100",
+          "owner": "Platform",
+          "balance": "3000000"
+        },
+        {
+          "account": "IRR-2100",
+          "owner": "CustomerA",
+          "balance": "2000000"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "M01",
+          "operation": "ReserveRefund",
+          "title": "Reserve customer claim and bank funding",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2100",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-2140",
+              "owner": "CustomerA",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "id": "M02",
+          "operation": "SettleRefund",
+          "title": "Provider paid customer; platform debit pending",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2140",
+              "owner": "CustomerA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-2160",
+              "owner": "GatewayA",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": "Cash reservation converts to a represented gateway payable; bank cash is unchanged."
+        },
+        {
+          "id": "M03",
+          "operation": "RecordGatewayRefundDebit",
+          "title": "Actual merchant cash debit",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2160",
+              "owner": "GatewayA",
+              "side": "Debit",
+              "amount": "1000000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "1000000"
+            }
+          ],
+          "note": ""
+        }
+      ],
+      "expectedFinalBalances": {
+        "IRR-1100|BankMain": "4000000",
+        "IRR-2100|CustomerA": "1000000",
+        "IRR-2160|GatewayA": "0"
+      }
+    },
+    {
+      "id": "custody-gold-before-payment",
+      "title": "Confirmed gold and cash timing are independent",
+      "initialBalances": [
+        {
+          "account": "IRR-1100",
+          "owner": "BankMain",
+          "balance": "200000000"
+        },
+        {
+          "account": "IRR-3100",
+          "owner": "Platform",
+          "balance": "200000000"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "P01",
+          "operation": "RecordCustodianGoldReceipt",
+          "title": "Receive authorized 10,000 mg before paying",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-3200",
+              "owner": "Platform",
+              "side": "Debit",
+              "amount": "100000000"
+            },
+            {
+              "account": "IRR-2150",
+              "owner": "CustodianA",
+              "side": "Credit",
+              "amount": "100000000"
+            },
+            {
+              "account": "GOLD-1100",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "10000"
+            },
+            {
+              "account": "GOLD-3200",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "10000"
+            }
+          ],
+          "note": "Convert the matching cash commitment into the payable-backed reservation, not both deductions."
+        },
+        {
+          "id": "P02",
+          "operation": "RecordCustodianCashPayment",
+          "title": "Pay the confirmed custody payable",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "IRR-2150",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "100000000"
+            },
+            {
+              "account": "IRR-1100",
+              "owner": "BankMain",
+              "side": "Credit",
+              "amount": "100000000"
+            }
+          ],
+          "note": ""
+        }
+      ],
+      "expectedFinalBalances": {
+        "IRR-1100|BankMain": "100000000",
+        "IRR-2150|CustodianA": "0",
+        "GOLD-1100|CustodianA": "10000"
+      }
+    },
+    {
+      "id": "unidentified-gold",
+      "title": "Physical receipt is not automatically eligible backing",
+      "initialBalances": [],
+      "scenarios": [
+        {
+          "id": "G01",
+          "operation": "RecordUnmatchedExternalMovement",
+          "title": "Record 50 mg whose ownership is unresolved",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "GOLD-1110",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "50"
+            },
+            {
+              "account": "GOLD-2190",
+              "owner": "GoldCase",
+              "side": "Credit",
+              "amount": "50"
+            }
+          ],
+          "note": "Eligible C remains zero."
+        },
+        {
+          "id": "G02",
+          "operation": "ResolveSuspense",
+          "title": "Ownership and grade proven",
+          "recordKind": "Financial",
+          "entries": [
+            {
+              "account": "GOLD-2190",
+              "owner": "GoldCase",
+              "side": "Debit",
+              "amount": "50"
+            },
+            {
+              "account": "GOLD-3200",
+              "owner": "Platform",
+              "side": "Credit",
+              "amount": "50"
+            },
+            {
+              "account": "GOLD-1100",
+              "owner": "CustodianA",
+              "side": "Debit",
+              "amount": "50"
+            },
+            {
+              "account": "GOLD-1110",
+              "owner": "CustodianA",
+              "side": "Credit",
+              "amount": "50"
+            }
+          ],
+          "note": "Eligible custody becomes 50 mg; the physical total does not increase."
+        }
+      ],
+      "expectedFinalBalances": {
+        "GOLD-1110|CustodianA": "0",
+        "GOLD-2190|GoldCase": "0",
+        "GOLD-1100|CustodianA": "50",
+        "GOLD-3200|Platform": "50"
+      }
+    }
+  ],
+  "arithmeticCases": [
+    {
+      "kind": "Buy",
+      "inputBudgetIrr": "1000001",
+      "priceIrrPerGram": "9999999",
+      "feeRatePpm": 10000,
+      "expectedQuantityMg": "100",
+      "expectedPrincipalIrr": "1000000",
+      "expectedFeeIrr": "10000",
+      "expectedTotalDebitIrr": "1010000",
+      "expectedUnusedPrincipalIrr": "1"
+    },
+    {
+      "kind": "Fee",
+      "principalIrr": "1000001",
+      "feeRatePpm": 10000,
+      "expectedFeeIrr": "10001"
+    },
+    {
+      "kind": "Sell",
+      "quantityMg": "100",
+      "priceIrrPerGram": "9999999",
+      "feeRatePpm": 5000,
+      "expectedPrincipalIrr": "999999",
+      "expectedBelowMinimum": true
+    },
+    {
+      "kind": "Backing",
+      "custodyMg": "1000000",
+      "customerClaimsMg": "995000",
+      "outgoingReservedMg": "0",
+      "expectedRemainingCapacityMg": "15000"
+    },
+    {
+      "kind": "Backing",
+      "custodyMg": "1000000",
+      "customerClaimsMg": "995000",
+      "outgoingReservedMg": "5000",
+      "expectedRemainingCapacityMg": "9950"
+    }
+  ]
+}
